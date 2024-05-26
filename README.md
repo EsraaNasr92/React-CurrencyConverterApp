@@ -1,70 +1,94 @@
-# Getting Started with Create React App
+# React Currency Converter App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a simple yet powerful currency converter application built using React. It allows users to convert amounts between different currencies using real-time exchange rates.
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Overview
+The React Currency Converter App is designed to provide users with a quick and easy way to convert amounts between different currencies. The application fetches real-time exchange rates from a reliable API and allows users to select the currencies they want to convert between. The app features a clean and user-friendly interface, making it accessible to users of all levels of technical expertise.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Links
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- [Solution URL here](https://github.com/EsraaNasr92/React-CurrencyConverterApp)
+- [Live site URL here](http://callous-bath.surge.sh/)
 
-### `npm run build`
+## My process
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Built with
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
+- CSS Grid
+- Mobile-first workflow
+- [React](https://reactjs.org/) - JS library
+- [Styled Components](https://styled-components.com/) - For styles
+- [Axios](https://axios-http.com/) - for making HTTP requests
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### What I learned
 
-### `npm run eject`
+Throughout the development of this currency converter app, I enhanced my skills in various areas:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- API Integration: Learned how to fetch and handle real-time data from an external API using Axios.
+- State Management: Improved my understanding of managing component state in React.
+- Form Handling: Developed skills in handling user inputs and updating state based on form interactions.
+- Styled Components: Utilized styled-components for better CSS management and scoped styling.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```js
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+const CurrencyConverter = () => {
+    // Varabile here
 
-## Learn More
+    // Function to feach data from API
+    useEffect(() => {
+        axios.get('https://api.exchangerate-api.com/v4/latest/USD')
+            .then(response => {
+                setRates(response.data.rates);
+            });
+    }, []);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    useEffect(() => {
+        if (rates) {
+            const rate = rates[toCurrency] / rates[fromCurrency];
+            setConvertedAmount(amount * rate);
+        }
+    }, [amount, fromCurrency, toCurrency, rates]);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+};
 
-### Code Splitting
+export default CurrencyConverter;
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Continued development
+In future iterations of this project, I plan to:
 
-### Analyzing the Bundle Size
+- Expand Currency Support: Include more currencies and ensure the app supports all major world currencies.
+- Add Historical Data: Allow users to view historical exchange rate data and trends.
+- Improve User Interface: Enhance the UI/UX to make it more intuitive and visually appealing.
+- Implement Error Handling: Add robust error handling to manage API errors and user input validation.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Useful resources
+- [React Documentation](https://reactjs.org/) - Official React documentation.
+- [Styled Components Documentation](https://styled-components.com/docs) - Official Styled Components documentation.
+- [Axios Documentation](https://axios-http.com/)
 
-### Making a Progressive Web App
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Github - [Esraa Nasr](https://github.com/EsraaNasr92/)
+- Frontend Mentor - [@EsraaNasr92](https://www.frontendmentor.io/profile/EsraaNasr92)
+- Twitter - [@__ecupcake](https://twitter.com/__ecupcake)
